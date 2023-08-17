@@ -1,9 +1,7 @@
-package com.rayan.game.States;
+package com.rayan.game.states;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-
-import org.ietf.jgss.GSSManager;
 
 /*
 created by Ahmed Rayan on 8/16/2023 at 4:11 am
@@ -28,6 +26,8 @@ public abstract class State {
     protected abstract void handleInput();
     public abstract void update(float dt);
     public abstract void render(SpriteBatch sb);
+
+    public abstract void dispose();
 
 
 

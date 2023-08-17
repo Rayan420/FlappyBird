@@ -4,13 +4,13 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.rayan.game.States.GameStateManager;
-import com.rayan.game.States.MenuState;
+import com.rayan.game.states.GameStateManager;
+import com.rayan.game.states.MenuState;
 
 public class FlappyBird extends ApplicationAdapter {
-	public static final int width =480; // width of application screen
-	public static final int height = 800; // height of application screen
-	public static final String title = "Flappy Bird"; // title of the application
+	public static final int WIDTH =480; // width of application screen
+	public static final int HEIGHT = 800; // height of application screen
+	public static final String TITLE = "Flappy Bird"; // title of the application
 
 
 	private GameStateManager gsm;
@@ -30,7 +30,7 @@ public class FlappyBird extends ApplicationAdapter {
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
 	}
-	
+
 	@Override
 	public void dispose () {
 		batch.dispose();

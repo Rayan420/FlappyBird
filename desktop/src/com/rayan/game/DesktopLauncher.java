@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60); // setting the frame rate of the app to 60 fps
-		config.setTitle(FlappyBird.title); // setting window title
-		config.setWindowedMode(FlappyBird.width, FlappyBird.height); // setting window width and height
+		config.setTitle(FlappyBird.TITLE); // setting window title
+		config.setWindowedMode(FlappyBird.WIDTH, FlappyBird.HEIGHT); // setting window width and height
 		new Lwjgl3Application(new FlappyBird(), config);
 	}
 }
