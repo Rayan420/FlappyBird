@@ -36,6 +36,8 @@ public class FlappyBird extends ApplicationAdapter {
 		gsm.render(batch);
 	}
 
+
+
 	@Override
 	public void dispose () {
 		super.dispose();

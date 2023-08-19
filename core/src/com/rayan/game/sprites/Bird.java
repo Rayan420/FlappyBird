@@ -20,6 +20,7 @@ public class Bird {
     private Texture texture;
     private Animation birdAnimation;
     private Sound flap;
+    public int coins = 0;
     public Bird(int x, int y)
     {
         position = new Vector3(x,y,0);
@@ -33,6 +34,15 @@ public class Bird {
 
     }
 
+    public String getCoins()
+    {
+        return String.valueOf(coins);
+    }
+
+    public void setCoins()
+    {
+        coins++;
+    }
     public Vector3 getPosition() {
         return position;
     }
@@ -50,9 +60,9 @@ public class Bird {
 
         velocity.scl(dt);
 
-        if (TimeUtils.timeSinceNanos(startTime) <= 90000000000L) { // 90 seconds in nanoseconds
+        if (TimeUtils.timeSinceNanos(startTime) <= 30000000000L) { // 90 seconds in nanoseconds
             // Calculate the incremental change per frame
-            float increment = (250 - 100) / (90 * 1000000000f) * TimeUtils.timeSinceNanos(startTime);
+            float increment = (250 - 100) / (30 * 1000000000f) * TimeUtils.timeSinceNanos(startTime);
 
             MOVEMENT = (int) Math.min(100 + increment, 250); // Ensure MOVEMENT doesn't exceed 250
         }
