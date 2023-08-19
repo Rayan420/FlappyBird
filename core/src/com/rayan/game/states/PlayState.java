@@ -1,7 +1,9 @@
 package com.rayan.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -16,6 +18,7 @@ public class PlayState extends State{
     private Bird bird;
     private Texture bg;
     private Array<Tube> tubes;
+    private BitmapFont font;
 
     private Texture ground;
     private Vector2 groundPos1, groundPos2;
@@ -25,10 +28,10 @@ public class PlayState extends State{
         bg = new Texture("bg.png");
         camera.setToOrtho(false, FlappyBird.WIDTH/2, FlappyBird.HEIGHT/2);
         tubes = new Array<Tube>();
+        font = new BitmapFont(); // Load your font file
         ground = new Texture("ground.png");
         groundPos1 = new Vector2(camera.position.x - camera.viewportWidth /2, GROUND_Y_OFFSET);
         groundPos2 = new Vector2((camera.position.x - camera.viewportWidth /2) + ground.getWidth(), GROUND_Y_OFFSET);
-
         for(int i = 1; i<=TUBE_COUNT;i++)
         {
             tubes.add(new Tube(i * (TUBE_SPACING + Tube.TUBE_WIDTH)));
@@ -59,11 +62,19 @@ public class PlayState extends State{
             {
                 gsm.set(new PlayState(gsm));
             }
+            if (tube.coinCollide(bird.getBounds())) {
+                if (tube.isCoinVisible() && tube.isCoinCollected()) {
+                    tube.setCoinCollected(true); // Set the coin as collected
+                    tube.hideCoin();
+                }
+            }
+            tube.update(dt);
         }
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET)
             gsm.set(new PlayState(gsm));
         camera.update();
     }
+
 
     @Override
     public void render(SpriteBatch sb) {
@@ -78,6 +89,9 @@ public class PlayState extends State{
         {
             sb.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
             sb.draw(tube.getBottomTube(), tube.getPosBottomTube().x, tube.getPosBottomTube().y);
+            if (tube.isCoinVisible()) {
+                sb.draw(tube.getCoin(), tube.getPosCoin().x, tube.getPosCoin().y);
+            }
 
         }
         sb.end();
